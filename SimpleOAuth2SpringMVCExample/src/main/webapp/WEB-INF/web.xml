@@ -4,25 +4,27 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<!--
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
+			/WEB-INF/spring/security-context.xml 
 			/WEB-INF/spring/root-context.xml
-			/WEB-INF/spring/security-context.xml
 		</param-value>
 	</context-param>
-	
-	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+-->
+<!--
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
+-->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 		<init-param>
 			<param-name>contextAttribute</param-name>
-			<param-value>org.springframework.web.servlet.FrameworkServlet.CONTEXT.spring</param-value>
+			<param-value>org.springframework.web.servlet.FrameworkServlet.CONTEXT.security</param-value>
+			<!-- CONTEXT 다음에 들어갈 문자열인 security가 나오면 security 의 servlet를 찾는다.-->
 		</init-param>
 	</filter>
 
@@ -30,10 +32,16 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
 	
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 
 
 	<!-- Processes application requests -->
+	<!--
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -42,10 +50,25 @@
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
-	</servlet>
-		
+	</servlet>	
+
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>jsp</servlet-name>
+		<url-pattern>/WEB-INF/views/*</url-pattern>
+	</servlet-mapping>
+-->
+	<servlet>
+		<servlet-name>security</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>security</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 

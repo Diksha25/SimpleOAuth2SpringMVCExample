@@ -11,7 +11,6 @@
  * specific language governing permissions and limitations under the License.
  */
 
-
 package org.springsecurity.oauth2.converter;
 
 import java.util.Arrays;
@@ -26,16 +25,22 @@ import org.springframework.security.oauth2.client.token.AccessTokenRequest;
  * @author Dave Syer
  * 
  */
-public class AccessTokenRequestConverter implements GenericConverter {
+public class AccessTokenRequestConverter implements GenericConverter
+{
 
-	private Set<ConvertiblePair> convertibleTypes = new HashSet<GenericConverter.ConvertiblePair>(
-			Arrays.asList(new ConvertiblePair(AccessTokenRequest.class, AccessTokenRequest.class)));
+	private Set<ConvertiblePair>	convertibleTypes	= new HashSet<GenericConverter.ConvertiblePair>( Arrays
+																.asList( new ConvertiblePair(	AccessTokenRequest.class ,
+																								AccessTokenRequest.class ) ) );
 
-	public Set<ConvertiblePair> getConvertibleTypes() {
+	public Set<ConvertiblePair> getConvertibleTypes()
+	{
 		return convertibleTypes;
 	}
 
-	public Object convert(Object source, TypeDescriptor sourceType, TypeDescriptor targetType) {
+	public Object convert(	Object source ,
+							TypeDescriptor sourceType ,
+							TypeDescriptor targetType )
+	{
 		return source;
 	}
 

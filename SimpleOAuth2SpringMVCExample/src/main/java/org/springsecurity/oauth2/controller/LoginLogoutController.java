@@ -1,4 +1,4 @@
-package org.springsecurity.oauth2;
+package org.springsecurity.oauth2.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
