@@ -41,4 +41,11 @@ public class HomeController
 		return "home";
 	}
 
+	@RequestMapping( value = "/home" , method = RequestMethod.GET )
+	public String homeIndex( Locale locale , Model model )
+	{
+		logger.info( "Only member." );
+
+		return "index";
+	}
 }

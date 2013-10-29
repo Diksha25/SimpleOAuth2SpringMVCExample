@@ -8,48 +8,23 @@
   <link type="text/css" rel="stylesheet" href="<c:url value="/style.css"/>"/>
 
   <authz:authorize ifAllGranted="ROLE_USER">
-    <script type='text/javascript'>
-      function pictureDisplay(json) {
-        for (var i = 0; i < json.photos.length; i++) {
-          var photo = json.photos[i];
-          document.write('<img src="photos/' + photo.id + '" alt="' + photo.name + '">');
-        }
-      }
-    </script>
+  <p>Member!</p>
   </authz:authorize>
 </head>
 <body>
 
-  <h1>Sparklr</h1>
+  <h1>Member!</h1>
 
   <div id="content">
-    <h2>Home</h2>
-
-    <p>This is a great site to store and view your photos. Unfortunately, we don't have any services
-    for printing your photos.  For that, you'll have to go to Tonr.</p>
+    <h2>Index</h2>
 
     <authz:authorize ifNotGranted="ROLE_USER">
-      <h2>Login</h2>
-      <form id="loginForm" name="loginForm" action="<c:url value="/login.do"/>" method="post">
-        <p><label>Username: <input type='text' name='j_username' value="marissa"></label></p>
-        <p><label>Password: <input type='text' name='j_password' value="koala"></label></p>
-        
-        <p><input name="login" value="Login" type="submit"></p>
-      </form>
+	    <jsp:include page="login.jsp"/>
     </authz:authorize>
     <authz:authorize ifAllGranted="ROLE_USER">
       <div style="text-align: center"><form action="<c:url value="/logout.do"/>"><input type="submit" value="Logout"></form></div>
-      
-      <h2>Your Photos</h2>
-
-      <p>
-        <script type='text/javascript' src='photos?callback=pictureDisplay&format=json'></script>
-      </p>
     </authz:authorize>
   </div>
-
-  <div id="footer">Sample application for <a href="http://github.com/SpringSource/spring-security-oauth" target="_blank">Spring Security OAuth</a></div>
-
 
 </body>
 </html>
